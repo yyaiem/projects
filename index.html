@@ -183,12 +183,12 @@
 
           const moreBtn = document.createElement("div")
           moreBtn.className = "buttonCont"
-          moreBtn.innerHTML = '<p class="click_text">Explore Project Here</p> '
+          moreBtn.innerHTML = `<p class="click_text" onclick ="window.open(${element[2]}, "_blank")">Explore Project Here</p>`
           ContentContainer.appendChild(moreBtn)
 
-          moreBtn.onclick = function () {
-            window.open(element[2], "_blank")
-          }
+          // moreBtn.onclick = function () {
+          //   window.open(element[2], "_blank")
+          // }
 
           const authorContainer = document.createElement("div")
           authorContainer.className = "AuthoorCoontainer"
