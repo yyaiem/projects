@@ -1,11 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Club Projects</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    @font-face {
+      font-family: samarkan;
+      src: url(./SAMAN___.TTF);
+    }
+
+    @font-face {
+      font-family: BaksoSapi;
+      src: url(./BaksoSapi.otf);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      /* background-color: #164c15; */
+      padding: 12px;
+    }
+
+    main,
+    header,
+    footer {
+      margin: 4px;
+      background-color: #ffffff20;
+      padding: 8px;
+      border-radius: 10px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-family: BaksoSapi;
+    }
+
+    .headText {
+      font-size: 20px;
+      font-family: samarkan;
+      margin-right: 8px;
+    }
+
+    .Sitecontainer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @media only screen and (max-width: 768px) {
+      .Sitecontainer {
+        display: block;
+      }
+    }
+
+    .ContentContainer {
+      margin: 10px;
+      background-color: #ffffff22;
+      border-radius: 8px;
+      padding: 10px;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      color: white;
+    }
+
+    .projeCTname {
+      font-size: 30px;
+      margin: 8px;
+      font-weight: bold;
+    }
+
+    .desContainer {
+      margin: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .description {
+      font-size: 20px;
+    }
+
+    .buttonCont {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .click_text {
+      font-size: 14px;
+      text-decoration: underline;
+      margin: 14px;
+      background-color: #ffffff30;
+      padding: 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .AuthoorCoontainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 4px;
+      flex-wrap: wrap;
+    }
+
+    .prof {
+      color: white;
+      text-decoration: none;
+      display: flex;
+      background-color: #ffffff32;
+      padding: 8px;
+      margin: 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    footer {
+      color: white;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    }
+
+    .footerItems {
+      list-style-type: none;
+      font-size: 10px;
+    }
+  </style>
 </head>
+
 <body>
-  This Page is under Devolopement 
+  <header>
+    <p class="headText">YantraYodha</p>
+    <p>Projects</p>
+  </header>
+  <main>
+    <div class="siteMain">
+      <div class="Sitecontainer" id="SiteContainer">
+
+      </div>
+    </div>
+  </main>
+  <footer>
+    <ul class="footerlist">
+      <li class="footerItems">All Rights Reserved by Pinaka</li>
+    </ul>
+  </footer>
+  <script>
+
+    function ContenLoader(arr) {
+      for (let index = 0; index < arr.length; index++) {
+        const element = arr[index];
+        if (element[0], element[1], element[2], element[3], element[4]) {
+
+          const ContentContainer = document.createElement("div");
+          ContentContainer.className = "ContentContainer";
+          document.getElementById("SiteContainer").appendChild(ContentContainer);
+
+          const projeCTname = document.createElement("p");
+          projeCTname.className = "projeCTname";
+          projeCTname.innerText = element[0];
+          ContentContainer.appendChild(projeCTname);
+
+          const desContainer = document.createElement("div");
+          desContainer.className = "desContainer";
+          ContentContainer.appendChild(desContainer);
+
+          const description = document.createElement("p");
+          description.className = "description";
+          description.innerText = element[1]
+          desContainer.appendChild(description)
+
+          const moreBtn = document.createElement("div")
+          moreBtn.className = "buttonCont"
+          moreBtn.innerHTML = '<p class="click_text">Explore Project Here</p> '
+          ContentContainer.appendChild(moreBtn)
+
+          moreBtn.onclick = function () {
+            window.open(element[2], "_blank")
+          }
+
+          const authorContainer = document.createElement("div")
+          authorContainer.className = "AuthoorCoontainer"
+          ContentContainer.appendChild(authorContainer)
+
+          const athrNam = document.createElement("p")
+          athrNam.innerText = "Developed by " + element[3]
+          authorContainer.appendChild(athrNam)
+
+
+          const authProf = document.createElement("a")
+          authProf.href = element[4]
+          authProf.innerText = `Connect with ${element[3]}`
+          authProf.className = "prof"
+          authProf.target = "_blank"
+          authorContainer.appendChild(authProf)
+
+        }
+      }
+    }
+
+
+    let API_URL = "https://script.google.com/macros/s/AKfycbyubvipJHaIlWZSTcVpQ29w1QmMG5VmlBgwzUBu1yxiMRDuFvJ-yz42IGVrHEK2i-nj/exec"
+    async function FetchData(API_URL, parameter = "") {
+      try {
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+          throw new Error('HTTP error! Status: ${ response.status } ');
+        }
+
+        const data = await response.text(); // Assuming the Apps Script returns JSON
+        if (data) {
+          let arrb = JSON.parse(data);
+          // console.log(arrb);
+          console.log(arrb)
+          ContenLoader(arrb)
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
+    
+    
+    function getRandomItem(array) {
+      if (!Array.isArray(array) || array.length === 0) {
+        throw new Error("Invalid array");
+      }
+      const randomIndex = Math.floor(Math.random() * array.length);
+      return array[randomIndex];
+    }
+
+    // Example usage:
+    const items = [" #290b31", "#0b1a31", "#0b312e", " #46250a", " #4c1515","#164c15"];
+    const randomItem = getRandomItem(items);
+    document.body.style.backgroundColor = randomItem;
+
+    
+    FetchData(API_URL)
+  </script>
 </body>
+
 </html>
