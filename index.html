@@ -183,12 +183,16 @@
 
           const moreBtn = document.createElement("div")
           moreBtn.className = "buttonCont"
-          moreBtn.innerHTML = `<p class="click_text" onclick ="window.open(${element[2]}, "_blank")">Explore Project Here</p>`
           ContentContainer.appendChild(moreBtn)
 
-          // moreBtn.onclick = function () {
-          //   window.open(element[2], "_blank")
-          // }
+          const ProjectLink = document.createElement("p")
+          ProjectLink.innerText = "Explore Project Here";
+          ProjectLink.className = "click_text"
+          moreBtn.appendChild(ProjectLink);
+
+          ProjectLink.onclick = function () {
+            window.open(element[2], "_blank")
+          }
 
           const authorContainer = document.createElement("div")
           authorContainer.className = "AuthoorCoontainer"
@@ -222,7 +226,7 @@
         const data = await response.text(); // Assuming the Apps Script returns JSON
         if (data) {
           let arrb = JSON.parse(data);
-          document.getElementById("loadingScreen").style.display  = "none"
+          document.getElementById("loadingScreen").style.display = "none"
           // console.log(arrb);
           console.log(arrb)
           ContenLoader(arrb)
@@ -231,8 +235,8 @@
         console.error('Error fetching data:', error);
       }
     }
-    
-    
+
+
     function getRandomItem(array) {
       if (!Array.isArray(array) || array.length === 0) {
         throw new Error("Invalid array");
@@ -242,11 +246,11 @@
     }
 
     // Example usage:
-    const items = [" #290b31", "#0b1a31", "#0b312e", " #46250a", " #4c1515","#164c15"];
+    const items = [" #290b31", "#0b1a31", "#0b312e", " #46250a", " #4c1515", "#164c15"];
     const randomItem = getRandomItem(items);
     document.body.style.backgroundColor = randomItem;
 
-    
+
     FetchData(API_URL)
   </script>
 </body>
